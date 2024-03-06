@@ -1,7 +1,15 @@
+import 'package:concept_making/mainScreen.dart';
+import 'package:concept_making/utilities.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +17,7 @@ class SplashScreen extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-
+            
             height: MediaQuery.of(context).size.height*1,
             width:MediaQuery.of(context).size.width*1,
 
@@ -58,8 +66,22 @@ class SplashScreen extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Expanded(child: Image.asset("img_2.png")),
-                      Expanded(child: Image.asset("img_3.png")),
+                      Expanded(
+                        child: InkWell(child: Image.asset("img_2.png"),
+                        onTap: (){
+                          Utilities.xKiValue = true;
+
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen()));
+
+                        },),
+                      ),
+                      Expanded(
+                        child: InkWell(onTap: (){
+                          Utilities.player1Selected = false;
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MainScreen()));
+
+                        },child: Image.asset("img_3.png")),
+                      ),
                     ],
                   ),
                 ],
